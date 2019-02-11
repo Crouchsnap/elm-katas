@@ -1,6 +1,4 @@
-node_modules
 elm-stuff
+index.html
 elm.js
-npm-debug.log
-dist/
-index.css
+.idea
