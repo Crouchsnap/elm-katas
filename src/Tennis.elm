@@ -48,8 +48,14 @@ player1Scores game =
         Deuce Nothing ->
             Deuce (Just Player1)
 
-        _ ->
+        Deuce (Just Player2) ->
             Deuce Nothing
+
+        Deuce (Just Player1) ->
+            Winner Player1
+
+        _ ->
+            Points ( -1, -1 )
 
 
 player2Scores : Game -> Game
@@ -69,8 +75,14 @@ player2Scores game =
         Deuce Nothing ->
             Deuce (Just Player2)
 
-        _ ->
+        Deuce (Just Player1) ->
             Deuce Nothing
+
+        Deuce (Just Player2) ->
+            Winner Player2
+
+        _ ->
+            Points ( -1, -1 )
 
 
 scoreToString : Game -> String
@@ -87,6 +99,9 @@ scoreToString game =
 
         Deuce (Just Player1) ->
             "Advantage Player 1"
+
+        Winner Player1 ->
+            "Player 1 Wins"
 
         _ ->
             "Unhandled Score"
