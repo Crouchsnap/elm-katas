@@ -1,111 +1,28 @@
-module Tennis exposing (Game(..), init, player1Scores, player2Scores, scoreToString)
+module Tennis exposing (..)
+
+
+type alias Game =
+    Int
 
 
 init : Game
 init =
-    Points ( 0, 0 )
-
-
-type Game
-    = Points ( Int, Int )
-    | Deuce (Maybe Player)
-    | Winner Player
-
-
-type Player
-    = Player1
-    | Player2
-
-
-checkForDeuce : Game -> Bool
-checkForDeuce game =
-    case game of
-        Points ( player1Score, player2Score ) ->
-            if player1Score > 2 && player1Score == player2Score then
-                True
-
-            else
-                False
-
-        _ ->
-            False
+    0
 
 
 player1Scores : Game -> Game
 player1Scores game =
-    case game of
-        Points ( player1Score, player2Score ) ->
-            let
-                points =
-                    Points ( player1Score + 1, player2Score )
-            in
-            if checkForDeuce points then
-                Deuce Nothing
-
-            else
-                points
-
-        Deuce Nothing ->
-            Deuce (Just Player1)
-
-        _ ->
-            Deuce Nothing
-
-
-player2Scores : Game -> Game
-player2Scores game =
-    case game of
-        Points ( player1Score, player2Score ) ->
-            let
-                points =
-                    Points ( player1Score, player2Score + 1 )
-            in
-            if checkForDeuce points then
-                Deuce Nothing
-
-            else
-                points
-
-        Deuce Nothing ->
-            Deuce (Just Player2)
-
-        _ ->
-            Deuce Nothing
+    1
 
 
 scoreToString : Game -> String
 scoreToString game =
     case game of
-        Points ( player1Score, player2Score ) ->
-            pointsToString player1Score ++ "-" ++ pointsToString player2Score
-
-        Deuce Nothing ->
-            "Deuce"
-
-        Deuce (Just Player2) ->
-            "Advantage Player 2"
-
-        Deuce (Just Player1) ->
-            "Advantage Player 1"
-
-        _ ->
-            "Unhandled Score"
-
-
-pointsToString : Int -> String
-pointsToString points =
-    case points of
         0 ->
-            "Love"
+            "Love-Love"
 
         1 ->
-            "15"
-
-        2 ->
-            "30"
-
-        3 ->
-            "40"
+            "15-Love"
 
         _ ->
-            "unhandled score"
+            "Unhandled score"
