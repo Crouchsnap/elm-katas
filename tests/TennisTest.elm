@@ -86,4 +86,31 @@ suite =
                     |> Tennis.player1Scores
                     |> Tennis.scoreToString
                     |> Expect.equal "Player 1 Wins"
+        , test "player 2 wins" <|
+            \_ ->
+                Tennis.init
+                    |> Tennis.player2Scores
+                    |> Tennis.player2Scores
+                    |> Tennis.player1Scores
+                    |> Tennis.player1Scores
+                    |> Tennis.player1Scores
+                    |> Tennis.player2Scores
+                    |> Tennis.player2Scores
+                    |> Tennis.player2Scores
+                    |> Tennis.scoreToString
+                    |> Expect.equal "Player 2 Wins"
+        , test "player scored after winning" <|
+            \_ ->
+                Tennis.init
+                    |> Tennis.player2Scores
+                    |> Tennis.player2Scores
+                    |> Tennis.player1Scores
+                    |> Tennis.player1Scores
+                    |> Tennis.player1Scores
+                    |> Tennis.player2Scores
+                    |> Tennis.player2Scores
+                    |> Tennis.player2Scores
+                    |> Tennis.player2Scores
+                    |> Tennis.scoreToString
+                    |> Expect.equal "Player 2 Wins"
         ]
