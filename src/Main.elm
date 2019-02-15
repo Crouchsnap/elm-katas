@@ -2,12 +2,12 @@ module Main exposing (main)
 
 import Browser
 import Html exposing (..)
-import Platform exposing (Program)
-import Tennis
+import Html.Events exposing (onClick)
+import Tennis exposing (player1Scores)
 
 
 type Msg
-    = NoOp
+    = Player1Scores
 
 
 type alias Model =
@@ -17,7 +17,7 @@ type alias Model =
 view : Model -> Html Msg
 view model =
     div []
-        [ text (Tennis.scoreToString model) ]
+        [ text (Tennis.scoreToString model), button [ onClick Player1Scores ] [ text "Player 1 Scores" ] ]
 
 
 init : Model
@@ -28,8 +28,8 @@ init =
 update : Msg -> Model -> Model
 update msg model =
     case msg of
-        NoOp ->
-            model
+        Player1Scores ->
+            player1Scores model
 
 
 main : Program () Model Msg

@@ -42,6 +42,9 @@ player1Scores game =
             if checkForDeuce points then
                 Deuce Nothing
 
+            else if player1Score == 3 then
+                Winner Player1
+
             else
                 points
 
